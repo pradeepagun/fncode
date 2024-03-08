@@ -1,14 +1,33 @@
-# Use the official Oracle Linux 7 slim image as the base image
-FROM oraclelinux:7-slim
+#FROM docker-reg.portal.gov.bd/npf-backend:1.34
+FROM php:7.3-apache
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    default-mysql-client \
+    dnsutils
 
-# Install Python and required packages
-RUN yum install -y python3
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy the function code into the container
-COPY hello_world_function.py /function/
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Set the working directory
-WORKDIR /function
+RUN sed -i 's/memory_limit = 128M/memory_limit = 2G/g' /usr/local/etc/php/php.ini-production
+RUN sed -i 's/expose_php = On/expose_php = off/g' /usr/local/etc/php/php.ini-production
+RUN sed -i 's/memory_limit = 128M/memory_limit = 2G/g' /usr/local/etc/php/php.ini-development
+RUN sed -i 's/expose_php = On/expose_php = off/g' /usr/local/etc/php/php.ini-development
+WORKDIR /var/www/html
+RUN rm -rf *
+COPY . .
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 755 /var/www/html
 
-# Define the command to run the function
-CMD ["python3", "-m", "oci.fn.runtime.python36", "hello_world_function.handler"]
+RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
+
+EXPOSE 80 443
+CMD /usr/sbin/apache2ctl -D FOREGROUND
