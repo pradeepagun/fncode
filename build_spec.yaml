@@ -6,7 +6,7 @@ shell: bash
 env:
   variables:
     DEPLOYMENT_DIRECTORY: "${OCI_WORKSPACE_DIR}/deployment/${DEPLOYMENT_ENV}"
-    DOCKER_TAG: "sin.ocir.io/axbcgwk4qojm/np-backend/npfrepo:latest"
+    DOCKER_TAG: "syd.ocir.io/sehubjapaciaas/fnrepo:latest"
   
   exportedVariables:
     - BUILDRUN_HASH    
@@ -19,15 +19,14 @@ steps:
     timeoutInSeconds: 3000
     command: |
           
-          export K8S_SERVICE_NAME="np-backend"
           export DEPLOYMENT_TIMEOUT="120s"
           export BUILDRUN_HASH=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
           echo "BUILDRUN_HASH: " $BUILDRUN_HASH
 
 
 
-          export REGISTRY="sin.ocir.io/axbcgwk4qojm/npfregrepo2"
-          export PROJECT_NAME="np-backend"
+          export REGISTRY="syd.ocir.io/sehubjapaciaas/fnrepo"
+          export PROJECT_NAME="fn-backend"
           export DEPLOYMENT_ENV="stage"
           export IMAGE_CREATED_BY="OCIDevOps"
           export GIT_TAG="$(git describe --tags)"
