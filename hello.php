@@ -1,4 +1,4 @@
 <?php
 echo "Hello, world!";
-echo "version 2";
+echo "version 1";
 ?>
