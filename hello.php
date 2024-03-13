@@ -4,7 +4,7 @@
     <title>My PHP Page</title>
     <style>
         body {
-            background-color: green;
+            background-color: blue;
             color: white; /* Adding white text color for better readability */
         }
     </style>
@@ -12,7 +12,7 @@
 <body>
     <?php
     echo "Hello, world!";
-    echo "version 3";
+    echo "version 4";
     ?>
 </body>
 </html>
