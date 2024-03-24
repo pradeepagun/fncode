@@ -12,7 +12,7 @@
 <body>
     <?php
     echo "Hello, world!";
-    echo "version 4";
+    echo "version 1";
     ?>
 </body>
 </html>
