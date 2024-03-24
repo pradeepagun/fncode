@@ -22,7 +22,7 @@ steps:
           export BUILDRUN_HASH=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
           echo "BUILDRUN_HASH: " $BUILDRUN_HASH
 
-          export REGISTRY="mel.ocir.io/sehubjapaciaas/demorepo:latest"
+          export REGISTRY="mel.ocir.io/sehubjapaciaas/demorepo"
           export PROJECT_NAME="fn-backend"
           export DEPLOYMENT_ENV="stage"
           export IMAGE_CREATED_BY="OCIDevOps"
