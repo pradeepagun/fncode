@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My PHP Page</title>
+    <title>MyDemo PHP Page</title>
     <style>
         body {
             background-color: blue;
@@ -11,7 +11,7 @@
 </head>
 <body>
     <?php
-    echo "Hello, world!";
+    echo "Hello, world!\n";
     echo "version 1";
     ?>
 </body>
