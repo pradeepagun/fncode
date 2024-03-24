@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MyDemo PHP Page</title>
+    <title>Demo PHP Page</title>
     <style>
         body {
             background-color: blue;
